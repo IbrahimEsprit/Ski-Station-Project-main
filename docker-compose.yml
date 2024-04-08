@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  mysql-container:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+    volumes:
+      - /root/db:/var/lib/mysql
+
+  spring-app:
+    image: spring-app
+    container_name: spring-app
+    ports:
+      - "9090:9090"
+    networks:
+      - mynetwork
+    depends_on:
+      - mysql-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/SkiStationDB?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root123
+
+networks:
+  mynetwork:
+    driver: bridge
+
