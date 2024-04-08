@@ -14,7 +14,7 @@ services:
       - /root/db:/var/lib/mysql
 
   spring-app:
-    image: spring-app
+    image: my-ski-app
     container_name: spring-app
     ports:
       - "9090:9090"
