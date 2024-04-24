@@ -66,10 +66,15 @@
     </build>
 <!-- Deploy to Nexus -->
     <distributionManagement>
+         <snapshotRepository>
+            <id>deploymentRepo</id>
+            <name>Snapshots Repository</name>
+            <url>http://192.168.211.153:8081/repository/maven-snapshots//</url>
+         </snapshotRepository>
          <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
-            <url>http://192.168.211.153:8081/repository/maven-snapshots//</url>
+            <url>http://192.168.211.153:8081/repository/maven-releases//</url>
          </repository>
     </distributionManagement>
 </project>
